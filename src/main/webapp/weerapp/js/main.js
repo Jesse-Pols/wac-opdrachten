@@ -1,6 +1,6 @@
 var ipApiUrl = "https://ipapi.co/json/";
 //var countryApi = "https://restcountries.eu/rest/v2/all";
-var countryApi = "http://localhost:8080/firstapp/restservices/countries"
+var countryApi = "https://wac-hu-app.herokuapp.com/firstapp/restservices/countries"
 var openWeatherMapUrl = "https://api.openweathermap.org/data/2.5/weather?units=metric&appid=15f8b16ba77633865f4a480cff38a0e3";
 
 function initPage() {
