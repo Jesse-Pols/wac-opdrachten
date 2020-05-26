@@ -6,10 +6,10 @@
 <body>
 <div class="wrapper">
     <div class="links">
-        <a href="https://wac-hu-app.herokuapp.com/calculator">Rekenmachine</a>
-        <a href="https://wac-hu-app.herokuapp.com/weerapp">Weer Pagina</a>
+        <a href="/calculator">Rekenmachine</a>
+        <a href="/weerapp">Weer Pagina</a>
     </div>
-    <form id="login" action="https://wac-hu-app.herokuapp.com/restservices/authentication" method="post"><br>
+    <form id="login" action="/restservices/authentication" method="post"><br>
         Naam: <input type="text" name="username" value="Jesse" /><br>
         Wachtwoord: <input type="password" name="password" value="asd" /><br>
         <input type="submit" value="Inloggen" />
@@ -17,7 +17,6 @@
 </div>
 </body>
 <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
-<!-- <script src="https://malsup.github.com/jquery.form.js"></script> -->
 <script src="jquery.form.js"></script>
 <script src="main.js"></script>
 </html>
