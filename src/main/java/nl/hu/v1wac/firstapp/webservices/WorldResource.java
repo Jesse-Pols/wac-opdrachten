@@ -197,7 +197,7 @@ public class WorldResource {
 		JsonObjectBuilder job = Json.createObjectBuilder();
 		Boolean success = serviceProvider.getWorldService().saveCountry(country);
 		job.add("success", success);
-		if (!success) {
+		if (!success || code.length() > 2 || iso3.length() > 3) {
 			job.add("error", "Country couldn't be added. World Service failed.");
 		}
 		jab.add(job);

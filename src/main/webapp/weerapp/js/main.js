@@ -105,6 +105,8 @@ function saveCountry() {
         } else {
             alert("Er is iets mis gegaan. Het land kon niet worden opgeslagen.");
         }
+    }).then(data => {
+        console.log(data);
     }).catch(error => console.log(error));
 }
 
