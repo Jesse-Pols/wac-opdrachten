@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Context>
+    <Resource name="jdbc/PostgresDS"
+              url="jdbc:postgresql://localhost:5432/worlddb"
+              driverClassName="org.postgresql.Driver"
+              auth="Container"
+              type="javax.sql.DataSource"
+              username="postgres"
+              password="heelsecuurwachtwoord" />
+    <filter>
+        <filter-name>CorsFilter</filter-name>
+        <filter-class>org.apache.catalina.filters.CorsFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>CorsFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+</Context>

@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Les 5</title>
+	<link rel="stylesheet" type="text/css" href="style/theme.css">
+	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/2.8.0/css/flag-icon.min.css">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+<div id="frame">
+	<div id="myLocation" class="myLocation hoverable" onclick="showWeatherByCurrentLocation();">
+		<div class="title">Mijn locatie</div>
+		<div class="content">
+			<div class="context">
+				<b>Landcode:</b><br>
+				<b>Land:</b><br>
+				<b>Regio:</b><br>
+				<b>Stad:</b><br>
+				<b>Postcode:</b><br>
+				<b>Latitude:</b><br>
+				<b>Longitude:</b><br>
+				<b>IP:</b>
+			</div>
+			<div class="data">
+				<label id="landcode">NB</label><br>
+				<label id="land">NB</label><br>
+				<label id="regio">NB</label><br>
+				<label id="stad">NB</label><br>
+				<label id="postcode">NB</label><br>
+				<label id="latitude">NB</label><br>
+				<label id="longitude">NB</label><br>
+				<label id="ip">NB</label>
+			</div>
+		</div>
+	</div><br>
+
+	<div id="weatherInfo" class="weatherInfo">
+		<div class="title">Het weer in <label id="currentCity">Utrecht</label><span id="flag" class="flag-icon flag-icon-nl"></span></div>
+		<div class="content">
+			<div class="context">
+				<b>Temperatuur:</b><br>
+				<b>Luchtvochtigheid:</b><br>
+				<b>Windsnelheid:</b><br>
+				<b>Windrichting:</b><br>
+				<b>Zonsopgang:</b><br>
+				<b>Zonsondergang:</b>
+			</div>
+			<div class="data">
+				<label id="temperatuur">NB</label><br>
+				<label id="luchtvochtigheid">NB</label><br>
+				<label id="windsnelheid">NB</label><br>
+				<label id="windrichting">NB</label><br>
+				<label id="zonsopgang">NB</label><br>
+				<label id="zonsondergang">NB</label>
+			</div>
+		</div>
+	</div><br>
+
+	<div id="countryList" class="countryList">
+		<div class="title">Beschikbare vakantiebestemmingen</div>
+		<button id="openModalAddCountry">Toevoegen</button>
+		<table id="countryTable">
+			<tr>
+				<th>Land</th>
+				<th>Hoofdstad</th>
+				<th>Regio</th>
+				<th>Oppervlakte</th>
+				<th>Inwoners</th>
+			</tr>
+		</table>
+	</div>
+</div>
+
+<!-- Modal -->
+<div id="modal">
+	<div class="modal-content">
+		<span class="close">&times;</span>
+		<h2>Voeg een land toe.</h2>
+
+		<input type="text" id="newCode" placeholder="Code"><br>
+		<input type="text" id="newIso3" placeholder="Iso3"><br>
+		<input type="text" id="newName" placeholder="Naam"><br><br>
+
+		<input type="text" id="newCapital" placeholder="Hoofdstad"><br>
+		<input type="text" id="newContinent" placeholder="Continent"><br>
+		<input type="text" id="newRegion" placeholder="Regio"><br><br>
+
+		<input type="number" id="newSurface" placeholder="Oppervlakte"><br>
+		<input type="number" id="newPopulation" placeholder="Populatie"><br>
+		<input type="text" id="newGov" placeholder="Regeringsvorm"><br><br>
+
+		<input type="number" id="newLat" placeholder="Latitude"><br>
+		<input type="number" id="newLong" placeholder="Longitude"><br><br>
+
+		<input type="button" value="Opslaan" onclick="saveCountry()">
+	</div>
+</div>
+
+<!-- Hier komen jouw script-tags -->
+<script src="js/services.js"></script>
+<script src="js/setterservice.js"></script>
+<script src="js/setters.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>

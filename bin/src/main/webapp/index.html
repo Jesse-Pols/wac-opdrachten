@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+	<title>Dynamic Example</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="style.css">
+	<body>
+
+        <!-- STARTER SERVLET -->
+		<form action="DynamicServlet.do" method="get">
+			<div>
+				<input type="text" name="username" />
+				<input type="submit" value="Go!" />
+			</div>		
+        </form></br>
+        
+        
+        <!-- CALCULATOR SERVLET -->
+		<form action="CalculatorServlet.do" method="get" class="formCalc">
+			<div class="input-group mb-3">
+				<input type="text" class="form-control" placeholder="Eerste Getal" name="firstNumber">
+				<input type="text" class="form-control" placeholder="Tweede Getal" name="secondNumber">
+			</div>
+			<select class="browser-default custom-select" name="chosenOperator">
+				<option value="add">Optellen</option>
+				<option value="substract">Aftrekken</option>	
+				<option value="divide">Delen</option>
+				<option value="multiply">Vermenigvuldigen</option>						
+			</select>	
+			<input type="submit" class="form-control btn" value="Bereken">					
+        </form><br>
+        
+
+        <!-- JAVASCRIPT CALCULATOR -->
+        <div class="jsCalculator">
+
+            <div class="cDisplay">0</div>
+
+            <div class="cKeys">
+                <button class="cKeyOperator" data-action="add">+</button>
+                <button class="cKeyOperator" data-action="subtract">-</button>
+                <button class="cKeyOperator" data-action="multiply">x</button>
+                <button class="cKeyOperator" data-action="divide">/</button>
+
+                <button>0</button>
+                <button>1</button>
+                <button>2</button>
+                <button>3</button>
+                <button>4</button>
+                <button>5</button>
+                <button>6</button>
+                <button>7</button>
+                <button>8</button>
+                <button>9</button>
+
+                <button data-action="decimal">.</button>
+                <button data-action="clear">C</button>
+                <button class="cKeyEquals" data-action="calculate">=</button>
+            </div>
+
+        </div>
+
+        <script type="text/javascript" src="main.js"></script>
+
+	</body>
+</html>
