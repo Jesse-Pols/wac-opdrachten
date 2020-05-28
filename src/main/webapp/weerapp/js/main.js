@@ -1,6 +1,6 @@
 var ipApiUrl = "https://ipapi.co/json/";
 //var countryApi = "https://restcountries.eu/rest/v2/all";
-var countryApi = "/restservices/countries"
+var countryApi = "http://localhost:8080/firstapp/restservices/countries"
 var openWeatherMapUrl = "https://api.openweathermap.org/data/2.5/weather?units=metric&appid=15f8b16ba77633865f4a480cff38a0e3";
 
 function initPage() {
@@ -105,10 +105,20 @@ function saveCountry() {
         } else {
             alert("Er is iets mis gegaan. Het land kon niet worden opgeslagen.");
         }
-    }).then(data => {
-        console.log(data);
-    }).catch(error => console.log(error));
+    }).catch(error => saveButtonFailed(error));
+}
+
+function saveButtonFailed(error) {
+    alert("Er is iets mis gegaan. Het land kon niet worden opgeslagen.");
+    console.log(error);
+}
+
+function checkLoggedInStatus() {
+    let createButton = document.getElementById("openModalAddCountry");
+    if (sessionStorage.getItem("sessionToken") === null)
+        createButton.style.display = "none";
 }
 
 initPage();
 initModal();
+checkLoggedInStatus();

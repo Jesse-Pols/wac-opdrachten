@@ -143,16 +143,7 @@ public class WorldResource {
 	@Produces("application/json")
 	@RolesAllowed("user")
 	public String updateCountry(@PathParam("json") String json) throws IOException {
-		ObjectMapper objectMapper = new ObjectMapper();
-		JsonNode jsonNode = objectMapper.readTree(json);
-
-		String name = jsonNode.get("name").asText();
-		String capital = jsonNode.get("capital").asText();
-		String region = jsonNode.get("region").asText();
-		String oldname = jsonNode.get("oldname").asText();
-		int population = jsonNode.get("population").asInt();
-		double surface = jsonNode.get("surface").asDouble();
-		Country country = new Country(name, capital, region, population, surface, oldname);
+		Country country = this.jsonToCountry(json);
 
 		ServiceProvider serviceProvider = new ServiceProvider();
 		JsonArrayBuilder jab = Json.createArrayBuilder();
@@ -174,22 +165,7 @@ public class WorldResource {
 	@Produces("application/json")
 	@RolesAllowed("user")
 	public String saveCountry(@PathParam("json") String json) throws IOException {
-		ObjectMapper objectMapper = new ObjectMapper();
-		JsonNode jsonNode = objectMapper.readTree(json);
-
-		String code = jsonNode.get("code").asText();
-		String iso3 = jsonNode.get("iso3").asText();
-		String name = jsonNode.get("name").asText();
-		String capital = jsonNode.get("capital").asText();
-		String continent = jsonNode.get("continent").asText();
-		String region = jsonNode.get("region").asText();
-		int population = jsonNode.get("population").asInt();
-		double surface = jsonNode.get("surface").asDouble();
-		String government = jsonNode.get("government").asText();
-		double latitude = jsonNode.get("latitude").asDouble();
-		double longitude = jsonNode.get("longitude").asDouble();
-
-		Country country = new Country(code, iso3, name, capital, continent, region, surface, population, government, latitude, longitude);
+		Country country = this.jsonToCountry(json);
 
 		ServiceProvider serviceProvider = new ServiceProvider();
 		JsonArrayBuilder jab = Json.createArrayBuilder();
@@ -197,13 +173,49 @@ public class WorldResource {
 		JsonObjectBuilder job = Json.createObjectBuilder();
 		Boolean success = serviceProvider.getWorldService().saveCountry(country);
 		job.add("success", success);
-		if (!success || code.length() > 2 || iso3.length() > 3) {
+		if (!success) {
 			job.add("error", "Country couldn't be added. World Service failed.");
 		}
 		jab.add(job);
 
 		JsonArray array = jab.build();
 		return array.toString();
+	}
+
+	private Country jsonToCountry(String json) throws IOException {
+		ObjectMapper objectMapper = new ObjectMapper();
+		JsonNode jsonNode = objectMapper.readTree(json);
+		try {
+			String code = jsonNode.get("code").asText();
+			String iso3 = jsonNode.get("iso3").asText();
+			String name = jsonNode.get("name").asText();
+			String capital = jsonNode.get("capital").asText();
+			String continent = jsonNode.get("continent").asText();
+			String region = jsonNode.get("region").asText();
+			int population = jsonNode.get("population").asInt();
+			double surface = jsonNode.get("surface").asDouble();
+			String government = jsonNode.get("government").asText();
+			double latitude = jsonNode.get("latitude").asDouble();
+			double longitude = jsonNode.get("longitude").asDouble();
+
+			return new Country(code, iso3, name, capital, continent, region, surface, population, government, latitude, longitude);
+		} catch (Exception e) {
+			System.out.println("Country couldn't be generated, one or more values might be missing. Trying again with a simplified constructor...");
+		}
+		try {
+			String name = jsonNode.get("name").asText();
+			String capital = jsonNode.get("capital").asText();
+			String region = jsonNode.get("region").asText();
+			String oldname = jsonNode.get("oldname").asText();
+			int population = jsonNode.get("population").asInt();
+			double surface = jsonNode.get("surface").asDouble();
+
+			return new Country(name, capital, region, population, surface, oldname);
+		} catch (Exception e) {
+			System.out.println("Simplified country couldn't be generated either. One or more values might be of the wrong type, or one or more values might still be missing.");
+			e.printStackTrace();
+			return null;
+		}
 	}
 
 }

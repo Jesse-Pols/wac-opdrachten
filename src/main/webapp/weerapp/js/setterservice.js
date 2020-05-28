@@ -15,10 +15,20 @@ function createDeleteButton(code) {
             } else {
                 alert("Er is iets mis gegaan. Het land kon niet worden verwijderd.");
             }
-        }).catch(error => console.log(error));
+        }).catch(error => deleteButtonFailed(error));
     };
 
     return deleteButton;
+}
+
+function deleteButtonFailed(error) {
+    alert("Er is iets mis gegaan. Het land kon niet worden verwijderd.")
+    console.log(error);
+}
+
+function updateButtonFailed(error) {
+    alert("Er is iets mis gegaan. Het land kon niet worden opgeslagen.");
+    console.log(error);
 }
 
 function createUpdateButton(land, hoofdstad, regio, oppervlakte, inwoners, element) {
@@ -48,6 +58,7 @@ function createExecuteButton(name) {
     executeButton.setAttribute("id", "executeButton" + name);
     executeButton.style.display = "none";
     executeButton.value = "Doorvoeren";
+    executeButton.setAttribute("class", "updateButtons");
 
     executeButton.onclick = function() {
         let land = document.getElementById('country' + name);
@@ -76,7 +87,7 @@ function createExecuteButton(name) {
             } else {
                 alert("Er is iets mis gegaan. De update kon niet worden uitgevoerd.");
             }
-        }).catch(error => console.log(error));
+        }).catch(error => updateButtonFailed(error));
     }
 
     return executeButton;

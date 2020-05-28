@@ -2,20 +2,19 @@ body {
 	background-color: #d7d5cd;
 }
 
-table {
-	border-collapse: collapse;
-	margin: 10px;
-}
-
-table, th, td {
-	border: 1px solid black;
-}
-
 .title {
 	font-weight: bold;
 	background-color: #a0998d;
 	color: #FFF;
     padding: 8px;
+}
+
+.countryList {
+    padding: 10px;
+}
+
+#countryTable {
+    background-color: #a0998d;
 }
 
 .content {
@@ -51,13 +50,20 @@ table, th, td {
 	#weatherInfo, #myLocation {
 		width: 73%;
 	}
-	
   #weatherInfo .content {
   	height: 92px;
+  	width: 370px;
   }
+  #weatherInfo {
+    height: 200px;
+   }
 
   #myLocation .content {
   	height: 130px;
+  	width: 370px;
+  }
+  #myLocation {
+    height: 250px;
   }
 
   .countryList {

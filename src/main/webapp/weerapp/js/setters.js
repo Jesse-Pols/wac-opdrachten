@@ -35,18 +35,21 @@ function setTableRow(table, element) {
 	let oppervlakte = row.insertCell();
 	let inwoners = row.insertCell();
 
-	let deleteCell = row.insertCell();
-	let updateCell = row.insertCell();
-
 	land.innerHTML = element.name;
 	hoofdstad.innerHTML = element.capital;
 	regio.innerHTML = element.region;
 	oppervlakte.innerHTML = element.surface;
 	inwoners.innerHTML = element.population;
 
-    deleteCell.appendChild(createDeleteButton(element.code));
-    updateCell.appendChild(createUpdateButton(land, hoofdstad, regio, oppervlakte, inwoners, element));
-    updateCell.appendChild(createExecuteButton(element.name));
+    if (sessionStorage.getItem("sessionToken") != null) {
+    	let deleteCell = row.insertCell();
+    	let updateCell = row.insertCell();
+
+        deleteCell.appendChild(createDeleteButton(element.code));
+        updateCell.appendChild(createUpdateButton(land, hoofdstad, regio, oppervlakte, inwoners, element));
+        updateCell.appendChild(createExecuteButton(element.name));
+    }
+
 
 	row.classList.add('hoverable');
 	row.onclick = function() {
