@@ -83,6 +83,8 @@ public class WorldService {
 			return countryDao.save(country);
 		} catch (SQLException e) {
 			e.printStackTrace();
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
 		return false;
 	}

@@ -50,9 +50,6 @@ var getRequest = function(url, func) {
       var data = JSON.parse(this.responseText);
       func(data);
     }
-    if (this.status == 400) {
-        alert("Er is iets mis gegaan.");
-    }
   }
   xhttp.open("GET", url, true);
   xhttp.send();

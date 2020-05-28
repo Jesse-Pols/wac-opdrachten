@@ -80,6 +80,11 @@ function saveCountry() {
     let latitude = document.getElementById('newLat');
     let longitude = document.getElementById('newLong');
 
+    if (code.value == "" || iso.value == "" || name.value == "" || capital.value == "" || continent.value == "" || region.value == "" || surface.value == "" || population.value == "" || government.value == "" || latitude.value == "" || longitude == "") {
+        alert("Je bent 1 of meerdere waardes vergeten in te vullen.");
+        location.reload();
+    }
+
     let data = {};
     data.code = code.value;
     data.iso3 = iso.value;
@@ -99,18 +104,17 @@ function saveCountry() {
         headers: {
             'Authorization': 'Bearer ' + sessionStorage.getItem("sessionToken")
         }
-    }).then(function(response) {
-        if (response.ok) {
-            location.reload();
+    }).then(response => response.json())
+    .then(data => {
+        if (data[0].success === null || data[0].success === false) {
+            alert("Er is iets misgegaan. Het land kon niet worden opgeslagen. Weet u zeker dat deze landcode niet al bestaat?");
         } else {
-            alert("Er is iets mis gegaan. Het land kon niet worden opgeslagen.");
+            location.reload();
         }
-    }).catch(error => saveButtonFailed(error));
-}
-
-function saveButtonFailed(error) {
-    alert("Er is iets mis gegaan. Het land kon niet worden opgeslagen.");
-    console.log(error);
+    }).catch(error => {
+        console.log(error);
+        alert("Er is iets mis gegaan. Het land kon niet worden opgeslagen.");
+    });
 }
 
 function checkLoggedInStatus() {

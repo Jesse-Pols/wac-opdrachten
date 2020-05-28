@@ -119,4 +119,11 @@ public class Country {
 	public void setPopulation(int population) {
 		this.population = population;
 	}
+
+	public boolean checkIfEmpty() {
+		if (this.name.isEmpty() || this.region.isEmpty() || this.capital.isEmpty() || this.code.isEmpty() || this.continent.isEmpty() || this.government.isEmpty() || this.iso3.isEmpty()) {
+			return false;
+		}
+		return true;
+	}
 }
