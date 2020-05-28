@@ -17,8 +17,12 @@
 <body>
 <div class="wrapper">
     <div class="links title">
-        <a href="/calculator">Rekenmachine</a>
-        <a href="/weerapp">Weer Pagina</a>
+        <form action="/calculator">
+            <input type="submit" value="Rekenmachine" />
+        </form>
+        <form action="/weerapp">
+            <input type="submit" value="Weer Pagina" />
+        </form>
     </div>
     <form id="login" action="/restservices/authentication" method="post"><br>
         Naam: <input type="text" name="username" value="Jesse" /><br>
